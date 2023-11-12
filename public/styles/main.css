@@ -1,0 +1,11 @@
+.container{
+text-align: center;
+}
+footer{
+    text-align: center;
+}
+#cityName{
+    text-transform: capitalize;
+    color: hotpink;
+    font-size: 2rem;
+}

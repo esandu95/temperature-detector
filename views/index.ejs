@@ -1,5 +1,33 @@
 <%- include("partials/header.ejs") %>
 <body>
-    
+
+<div class="container">
+    <div class="title">
+        <h1>Temperature Detector</h1>
+        <h2>Where do you live?</h2>
+    </div>
+
+    <div class="input-zone">
+
+        <form id="myForm" method="post">
+
+            <input type="text" id="cityInput" name="city">
+            <input id="postCity" type="submit" value="CHECK" formaction="/post-city">
+        </form>
+
+    </div>
+    <div class="container">
+        <% if(locals.tempInC){ %>
+        <p>Temperature in <span id="cityName"><%= city %></span> is <span id="cityName"><%= tempInC %>°</span></p>
+        <p><%= weatherMain %></p>
+        <p>It feels like <%= feelsLike %>°</p>
+       
+        <% } %>
+
+    </div>
+
+</div>
+
+
 </body>
 <%- include("partials/footer.ejs") %>
