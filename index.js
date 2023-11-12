@@ -22,24 +22,43 @@ app.post("/post-city", async (req, res) => {
     const longitude = resultCoordinates.data[0].lon;
   
     // Transform the coordinates into weather data
-    const resultWeather = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKEY}`);
-    const tempInK= JSON.stringify(resultWeather.data.list[0].main.temp);
-    const tempinC = Math. round(tempInK-273.15);
-    const feelsLikeInK = JSON.stringify(resultWeather.data.list[0].main.feels_like);
-    const feelsLike = Math. round(feelsLikeInK-273.15);
-    const weatherMain = resultWeather.data.list[0].weather[0].main;
+    const resultWeather = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKEY}&units=metric`);
 
-    console.log(weatherMain);
+    const tempNow= Math.round(JSON.stringify(resultWeather.data.list[0].main.temp));
+    const tempIn12= Math.round(JSON.stringify(resultWeather.data.list[4].main.temp));
+    const tempIn24= Math.round(JSON.stringify(resultWeather.data.list[8].main.temp));
+
+    const feelsLikeNow = Math.round(JSON.stringify(resultWeather.data.list[0].main.feels_like));
+    const feelsLikeIn12 = Math.round(JSON.stringify(resultWeather.data.list[4].main.feels_like));
+    const feelsLikeIn24 = Math.round(JSON.stringify(resultWeather.data.list[8].main.feels_like));
+
+    const weatherMainNow = resultWeather.data.list[0].weather[0].main;
+    const weatherMainIn12 = resultWeather.data.list[4].weather[0].main;
+    const weatherMainIn24 = resultWeather.data.list[8].weather[0].main;
 
     res.render("index.ejs",{
-      tempInC:tempinC,
+      tempNow:tempNow,
+      tempIn12:tempIn12,
+      tempIn24:tempIn24,
+
+      feelsLikeNow:feelsLikeNow,
+      feelsLikeIn12:feelsLikeIn12,
+      feelsLikeIn24:feelsLikeIn24,
+
+      weatherMainNow:weatherMainNow,
+      weatherMainIn12:weatherMainIn12,
+      weatherMainIn24:weatherMainIn24,
+
       city:city,
-      feelsLike:feelsLike,
-      weatherMain:weatherMain,
+      
+      
     });
 
   } catch (error) {
-    console.log(error); 
+    const wrongCity = req.body.city;
+    res.render("index.ejs",{
+      wrongCity:wrongCity
+    })
   }
 });
 

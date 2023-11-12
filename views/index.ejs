@@ -16,17 +16,40 @@
         </form>
 
     </div>
-    <div class="container">
-        <% if(locals.tempInC){ %>
-        <p>Temperature in <span id="cityName"><%= city %></span> is <span id="cityName"><%= tempInC %>°</span></p>
-        <p><%= weatherMain %></p>
-        <p>It feels like <%= feelsLike %>°</p>
-       
-        <% } %>
 
-    </div>
 
 </div>
+
+   
+<% if(locals.tempNow){ %>
+<div class="weather-forecast">
+    <div class="weather-now card">
+            <h3>Now</h3>
+            <p>Temperature in <span class="high"><%= city %></span> is <span class="high"><%= tempNow %>°</span>.</p>
+            <p><%= weatherMainNow %>.</p>
+            <p>It feels like <%= feelsLikeNow %>°.</p>
+    </div>  
+    <div class="12hrs card">
+        
+            <h3>In 12 Hours:</h3>
+            <p>Temperature will be <span class="high"><%= tempIn12 %>°</span>.</p>
+            <p><%= weatherMainIn12 %>.</p>
+            <p>It will feel like <%= feelsLikeIn12 %>°.</p>
+ 
+    </div>
+    <div class="24hrs card">
+                
+                    <h3>In 24 Hours:</h3>
+                    <p>Temperature will be <span class="high"><%= tempIn24 %>°</span>.</p>
+                    <p><%= weatherMainIn24 %>.</p>
+                    <p>It will feel like <%= feelsLikeIn24 %>°.</p>
+               
+            </div>
+
+        </div>
+<% }%>
+
+
 
 
 </body>

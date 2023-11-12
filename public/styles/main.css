@@ -1,11 +1,56 @@
-.container{
-text-align: center;
+body {
+  background: linear-gradient(300deg, #00bfff, #ff4c68, #ef8172);
+  background-size: 500% 500%;
+  animation: gradient-animation 18s ease infinite;
+  font-family: 'Teko', sans-serif;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+h1{
+    font-size: 3rem;
 }
 footer{
     text-align: center;
 }
-#cityName{
-    text-transform: capitalize;
-    color: hotpink;
-    font-size: 2rem;
+.high{
+    text-transform:uppercase;
+    color: gold;
+    font-size: 1.5rem;
+}
+
+.weather-forecast{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.card{
+  border: 2px white solid;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 30px 0px rgb(255, 238, 0);
 }
